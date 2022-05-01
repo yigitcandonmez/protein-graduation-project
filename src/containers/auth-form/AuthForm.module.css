@@ -1,0 +1,67 @@
+.authForm {
+	width: 100%;
+	flex-direction: column;
+	box-shadow: 0px 3px 12px #1e36480a;
+	padding: 2.4rem 2rem 2.9rem 2rem;
+	max-width: 56.9rem;
+}
+
+.heading {
+	text-align: center;
+	padding-bottom: 1rem;
+	font-size: 3.2rem;
+	font-weight: 600;
+}
+
+.subTitle {
+	width: 100%;
+	font-weight: 500;
+	font-size: 1.5rem;
+	padding-bottom: 3rem;
+	text-align: center;
+}
+
+.subTitleBottom {
+	text-align: center;
+	font-size: 1.5rem;
+	margin-top: 2rem;
+	font-weight: normal;
+}
+
+.subTitleBottom span {
+	cursor: pointer;
+	color: #4b9ce2;
+	font-weight: 500;
+}
+
+.input {
+	padding: 1.5rem 0;
+}
+
+.button {
+	margin-top: 1.5rem;
+	height: 4.5rem;
+	font-size: 1.8rem;
+}
+
+@media screen and (min-width: 768px) {
+	.authForm {
+		padding: 7rem 9rem;
+	}
+
+	.button {
+		margin-top: 3rem;
+	}
+
+	.subTitle {
+		padding-bottom: 5rem;
+	}
+
+	.subTitleBottom {
+		padding-top: 3rem;
+	}
+
+	.title {
+		font-size: 3.4rem;
+	}
+}
