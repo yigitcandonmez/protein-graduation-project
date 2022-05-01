@@ -1,0 +1,13 @@
+.home {
+	padding-top: 2rem;
+}
+
+.home-banner {
+	width: 100%;
+}
+
+.home-banner-image {
+	margin: 2rem 0;
+	width: 100%;
+	max-height: 43rem;
+}

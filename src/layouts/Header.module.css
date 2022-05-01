@@ -1,0 +1,12 @@
+.header {
+    width: 100%;
+    height: 8rem;
+    background-color: white;
+}
+
+.header-wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

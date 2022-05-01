@@ -1,0 +1,58 @@
+.card {
+	margin-top: 2rem;
+	height: 76.9rem;
+	padding: 1.6rem 1.5rem 1.6rem 1.5rem;
+}
+
+.single-card-image {
+	border-radius: 2%;
+}
+
+.single-card-content {
+	flex: 0.6;
+	margin-left: 6rem;
+	padding-top: 1.5rem;
+}
+
+.single-card-info {
+	width: 50%;
+	margin-top: 1rem;
+	margin-bottom: 2rem;
+}
+
+.single-card-prices {
+	width: 50%;
+	margin-bottom: 3rem;
+	border-radius: 0.8rem;
+}
+
+.single-card-price {
+	font-size: 2.5rem;
+	font-weight: 700;
+}
+
+.single-card-offer {
+	margin-top: 0.5rem;
+	padding: 0.8rem 1rem;
+	background-color: #f2f2f2;
+}
+
+.single-card-offer span:first-child {
+	flex: 0.9;
+	font-size: 1.5rem;
+	color: #b1b1b1;
+}
+
+.single-card-offer span:last-child {
+	font-size: 1.5rem;
+	color: #525252;
+	font-weight: 700;
+}
+
+.single-card-info span {
+	margin: 1rem 0;
+}
+
+.single-card-actions {
+	display: flex;
+}
