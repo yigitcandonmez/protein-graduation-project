@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
+
+:root {
+	--primary-blue: #4b9ce2;
+	--primary-light-blue: #f0f8ff;
+	--error: #f77474;
+	--error-light: #fff2f2;
+	--background-color: #f2f2f2;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 10px;
+	font-family: 'Nunito';
+	background-color: var(--background-color);
+}
+
+#root > .App {
+	min-height: 100vh;
+}
+
+a {
+	text-decoration: none;
+}
