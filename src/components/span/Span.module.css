@@ -1,0 +1,24 @@
+.spanwithtitle {
+	display: flex;
+	justify-content: space-between;
+	border-radius: 0.8rem;
+}
+
+.spanwithtitle span {
+	flex: 1.3;
+}
+
+.spanwithtitle span:last-child {
+	flex: 1;
+}
+
+.spanTitle {
+	font-size: 1.5rem;
+	color: #525252;
+	font-weight: 700;
+}
+
+.spanContent {
+	font-size: 1.5rem;
+	color: #525252;
+}

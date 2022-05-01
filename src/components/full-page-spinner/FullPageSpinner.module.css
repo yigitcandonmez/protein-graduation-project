@@ -1,0 +1,26 @@
+.full {
+	width: 100%;
+	min-height: 100vh;
+	background-color: #f0f8ff1e;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: -1;
+}
+
+.spinner {
+	position: absolute;
+	display: block;
+	width: 70px;
+	height: 70px;
+	border: 7px solid #4b9ce2;
+	border-radius: 50%;
+	border-top-color: #3e3e3e;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	to {
+		-webkit-transform: rotate(360deg);
+	}
+}

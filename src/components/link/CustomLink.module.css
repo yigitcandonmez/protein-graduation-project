@@ -1,0 +1,10 @@
+.customLink {
+	color: #4b9ce2;
+	font-weight: 600;
+	font-size: 1.5rem;
+	background-color: #f0f8ff;
+	padding: 1rem 2rem;
+	margin: 0 0.4rem;
+	border-radius: 0.8rem;
+	text-decoration: none;
+}

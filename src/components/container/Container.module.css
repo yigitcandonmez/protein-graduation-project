@@ -1,0 +1,11 @@
+.container-small {
+	max-width: 38.9rem;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.container-large {
+	max-width: 148rem;
+	height: 100%;
+	margin: 0 auto;
+}
