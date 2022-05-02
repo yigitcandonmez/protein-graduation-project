@@ -5,7 +5,6 @@ import { Button, Heading, TextInput, SubHeading } from '../../components';
 import styles from './AuthForm.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { Card } from '../../components/card/Card';
-import useDocumentTitle from '../../hooks/useDocumentTitle';
 
 const AuthFormTypes = {
 	signUp: {
@@ -25,8 +24,6 @@ function AuthForm() {
 
 	const [formType, setFormType] = useState(signIn);
 	const { login, register } = useAuth();
-
-	useDocumentTitle(`${formType.main}`);
 
 	const signupSchema = Yup.object().shape({
 		email: Yup.string().email('Geçerli bir mail adresi giriniz').required(),

@@ -1,0 +1,25 @@
+.popupCard {
+	width: 35.5rem;
+	height: 17rem;
+	flex-direction: column;
+	justify-content: space-around;
+	text-align: center;
+	padding: 2rem 2rem;
+}
+
+.popupHeading {
+	font-size: 2.5rem;
+	color: #525252;
+	margin-bottom: 1.2rem;
+	font-weight: 700;
+}
+
+.popupSubHeading {
+	margin-bottom: 2rem;
+	font-size: 1.5rem;
+	color: #555555;
+}
+
+.popupRow {
+	display: flex;
+}
