@@ -1,9 +1,9 @@
 import { Container, Logo, CustomLink } from '../components';
 import styles from './Header.module.css';
-import { useUser } from '../contexts/UserContext';
+import { useAuth } from '../contexts/AuthContext';
 
 function Header() {
-	const user = useUser();
+	const { data } = useAuth();
 	return (
 		<header className={styles.header}>
 			<Container size="large">
@@ -13,7 +13,7 @@ function Header() {
 					</div>
 					<div>
 						{/* Objeye aktarılıcak. */}
-						{Object.entries(user).length < 1 ? (
+						{Object.entries(data).length < 1 ? (
 							<>
 								<CustomLink label="Ürün Ekle" to="/" />
 								<CustomLink label="Giriş Yap" to="/auth" />
