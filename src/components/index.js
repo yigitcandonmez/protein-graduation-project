@@ -11,3 +11,4 @@ export { Card } from './card';
 export { Image } from './image';
 export { Section } from './section';
 export { Span } from './span';
+export { Popup } from './popup';
