@@ -5,8 +5,7 @@ import styles from './Categories.module.css';
 
 function Categories() {
 	const { categories } = useProduct();
-	const categoryItems = categories ? categoryLimiter(categories) : [{ name: 'Loading...' }];
-
+	const categoryItems = categories ? categoryLimiter(categories) : [{ name: 'Yükleniyor...' }];
 	return (
 		<ul className={styles['home-nav-list']}>
 			<ListItem data={categoryItems} />
