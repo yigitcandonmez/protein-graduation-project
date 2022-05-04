@@ -56,3 +56,22 @@
 .single-card-actions {
 	display: flex;
 }
+
+.noneButton {
+	width: 29.5rem;
+	height: 4.7rem;
+	background-color: #fff0e2;
+	color: #faad60;
+	font-size: 1.6rem;
+}
+
+.primaryButton {
+	width: 23.5rem;
+	height: 4.5rem;
+}
+
+.secondaryButton {
+	width: 23.5rem;
+	height: 4.5rem;
+	padding-left: 1rem;
+}

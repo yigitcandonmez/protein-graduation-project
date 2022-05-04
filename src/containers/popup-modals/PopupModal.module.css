@@ -1,0 +1,90 @@
+.popupCard {
+	width: 35.5rem;
+	height: 17rem;
+	text-align: center;
+	padding: 2rem 2rem;
+	flex-direction: column;
+}
+
+.popupHeading {
+	font-size: 2.5rem;
+	color: #525252;
+	margin-bottom: 1.2rem;
+	font-weight: 700;
+}
+
+.popupSubHeading {
+	margin-bottom: 2rem;
+	font-size: 1.5rem;
+	color: #555555;
+}
+
+.popupRow {
+	display: flex;
+}
+
+.offerCard {
+	display: block;
+	width: 48rem;
+	height: 46rem;
+	padding: 2rem 2rem;
+}
+
+.infoRow {
+	display: flex;
+	margin-top: 1.7rem;
+	margin-bottom: 0.5rem;
+	padding: 0.6rem 0.6rem;
+	background-color: #f0f8ff;
+	border-radius: 0.8rem;
+}
+
+.headingRow {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.inputRow {
+	flex-direction: row-reverse;
+	align-items: center;
+	border: 1px solid #e0e0e0;
+	border-radius: 0.8rem;
+	margin: 1.5rem 0;
+	padding: 1.3rem 1rem;
+	justify-content: flex-end;
+}
+
+.inputClassName {
+	width: 2rem;
+	height: 2rem;
+	margin-right: 0.5rem;
+}
+
+.labelClassName {
+	color: #525252;
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.offerHeading {
+	font-size: 2.5rem;
+	color: #525252;
+	font-weight: 700;
+}
+
+.offerImage {
+	width: 5rem;
+	height: 5rem;
+	border-radius: 0.8rem;
+}
+
+.button {
+	margin-top: 2rem;
+}
+
+.subHeading {
+	font-size: 1.3rem;
+	color: #555555;
+	padding-left: 0.7rem;
+}

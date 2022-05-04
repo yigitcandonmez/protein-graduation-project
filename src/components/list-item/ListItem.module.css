@@ -3,3 +3,18 @@
 	font-size: 1.8rem;
 	font-weight: 600;
 }
+
+.active {
+	color: #4b9ce2;
+	position: relative;
+}
+
+.active::before {
+	content: '';
+	z-index: 1;
+	width: 100%;
+	height: 2px;
+	position: absolute;
+	bottom: 0;
+	background-color: #4b9ce2;
+}

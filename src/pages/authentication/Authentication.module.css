@@ -1,48 +1,48 @@
 .authPage {
-    display: flex;
-    height: 100vh;
+	display: flex;
+	height: 100vh;
 }
 
 .authPage-left {
-    flex: 1;
-    height: 100%;
-    display: none;
-    background-image: url("../../assets/images/Banner.webp");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top;
+	flex: 1;
+	height: 100%;
+	display: none;
+	background-image: url('../../assets/images/Cover.webp');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: top;
 }
 
 .authPage-right {
-    flex: 1.4;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 0 1rem;
+	flex: 1.4;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 0 1rem;
 }
 
 .authPage-right-image {
-    margin-top: 2.8rem;
-    margin-bottom: 2.4rem;
+	margin-top: 2.8rem;
+	margin-bottom: 2.4rem;
 }
 
 .authPage-right-image img {
-    max-width: 14.8rem;
-    height: 4.8rem;
+	max-width: 14.8rem;
+	height: 4.8rem;
 }
 
 @media screen and (min-width: 768px) {
-    .authPage-left {
-        display: block;
-    }
-    
-    .authPage-right-image {
-        margin-top: 8.4rem;
-        margin-bottom: 4.4rem;
-    }
-    
-    .authPage-right-image img {
-        max-width: 22.4rem;
-        height: 7.3rem;
-    }
+	.authPage-left {
+		display: block;
+	}
+
+	.authPage-right-image {
+		margin-top: 8.4rem;
+		margin-bottom: 4.4rem;
+	}
+
+	.authPage-right-image img {
+		max-width: 22.4rem;
+		height: 7.3rem;
+	}
 }

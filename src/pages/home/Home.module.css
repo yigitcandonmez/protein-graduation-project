@@ -14,15 +14,11 @@
 
 .products {
 	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 28rem);
 	justify-content: space-between;
+	grid-gap: 20px;
 	margin-bottom: 16rem;
-}
-
-.products::after {
-	content: '';
-	flex: auto;
 }
 
 .home-nav {
