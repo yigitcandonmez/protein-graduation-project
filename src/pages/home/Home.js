@@ -1,7 +1,9 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect } from 'react';
 import loadable from '@loadable/component';
+import { useSearchParams } from 'react-router-dom';
 import { Header } from '../../layouts/Header';
-import Banner from '../../assets/images/Banner.png';
+import Banner from '../../assets/images/Banner.webp';
 import styles from './Home.module.css';
 import { Container, Image, Section } from '../../components';
 import { Categories } from '../../containers/categories/Categories';
@@ -9,6 +11,12 @@ import { Categories } from '../../containers/categories/Categories';
 const Products = loadable(() => import(/* webpackPrefetch: true */ '../../containers/products/Products'));
 
 function Home() {
+	const [searchParamse, setSearchParams] = useSearchParams();
+
+	useEffect(() => {
+		setSearchParams('categoryName=hepsi');
+	}, []);
+
 	return (
 		<>
 			<Header />

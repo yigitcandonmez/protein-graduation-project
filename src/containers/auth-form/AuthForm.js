@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
+
 import * as Yup from 'yup';
-import { Form, Formik } from 'formik';
-import { Button, Heading, TextInput, SubHeading } from '../../components';
-import styles from './AuthForm.module.css';
+import { Field, Form, Formik } from 'formik';
+
 import { useAuth } from '../../contexts/AuthContext';
-import { Card } from '../../components/card/Card';
+
+import { Button, Heading, Input, SubHeading, Card } from '../../components';
+import styles from './AuthForm.module.css';
 
 const AuthFormTypes = {
 	signUp: {
 		main: 'Üye Ol',
 		anti: 'Giriş Yap',
-		url: 'auth/local/register',
 	},
 	signIn: {
 		main: 'Giriş Yap',
 		anti: 'Üye Ol',
-		url: 'auth/local',
 	},
 };
 
 function AuthForm() {
 	const { signUp, signIn } = AuthFormTypes;
-
 	const [formType, setFormType] = useState(signIn);
+
 	const { login, register } = useAuth();
 
 	const signupSchema = Yup.object().shape({
@@ -39,13 +39,16 @@ function AuthForm() {
 	return (
 		<Card className={styles.authForm}>
 			<Formik
-				initialValues={{}}
+				initialValues={{
+					email: '',
+					password: '',
+				}}
 				validationSchema={signupSchema}
 				onSubmit={(values, { setSubmitting }) => {
 					if (formType === signUp) {
-						register(formType.url, values.email, values.password);
+						register(values.email, values.password);
 					}
-					login(formType.url, values.email, values.password);
+					login(values.email, values.password);
 					setSubmitting(false);
 				}}
 			>
@@ -54,25 +57,25 @@ function AuthForm() {
 					<SubHeading className={styles.subTitle}>
 						Fırsatlardan yararlanmak için {formType.main.toLowerCase()}!
 					</SubHeading>
-					<TextInput
-						id="email"
-						name="email"
-						type="email"
+					<Field
 						label="Email"
 						placeholder="Email@example.com"
-						className={styles.input}
+						name="email"
+						type="email"
+						component={Input}
+						inputClassName={styles.input}
 					/>
-					<TextInput
-						id="password"
-						name="password"
-						type="password"
+					<Field
 						label="Password"
 						placeholder="Password"
-						className={styles.input}
+						name="password"
+						type="password"
+						component={Input}
+						inputClassName={styles.input}
 					/>
 					<Button label={formType.main} primary className={styles.button} />
 					<SubHeading className={styles.subTitleBottom}>
-						Hesabın var mı? {/* Span component'a çevirilecek	 */}
+						Hesabın var mı? {/* Span component'a çevirilecek */}
 						<span
 							onClick={() => {
 								changeFormType();

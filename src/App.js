@@ -4,7 +4,7 @@ import loadable from '@loadable/component';
 
 const Home = loadable(() => import('./pages/home/Home'));
 const Authentication = loadable(() => import('./pages/authentication/Authentication'));
-const Product = loadable(() => import('./pages/product/Product'));
+const Product = loadable(() => import('./pages/product-detail/ProductDetail'));
 
 function App() {
 	return (
