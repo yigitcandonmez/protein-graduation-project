@@ -1,78 +1,66 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-use-before-define */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import axios from '../axios';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from '../services/axios';
 import { FullPageSpinner } from '../components';
+import * as usersApi from '../services/api/users';
 
 const AuthContext = createContext();
 
-export function AuthProvider(props) {
-	const [data, setData] = useState({});
+export function AuthProvider({ children }) {
+	const [user, setUser] = useState({});
 	const [loading, setLoading] = useState(false);
+	const [loadingInitial, setLoadingInitial] = useState(true);
+	const [error, setError] = useState();
 	const [cookies, setCookie, removeCookie] = useCookies(['AUTH_TOKEN']);
 
+	const location = useLocation();
+	const navigate = useNavigate();
+
 	useEffect(() => {
-		if (!data.id) {
-			getMe();
-		}
-	}, []);
+		if (error) setError(null);
+	}, [location.pathname]);
 
-	if (loading) {
-		return <FullPageSpinner />;
-	}
-
-	const getMe = async () => {
+	useEffect(() => {
 		if (cookies.AUTH_TOKEN) {
-			setLoading(true);
 			axios.defaults.headers.common.Authorization = `Bearer ${cookies.AUTH_TOKEN}`;
-			try {
-				const me = await axios({
-					url: '/users/me',
-					method: 'GET',
-				});
-				setData(me.data);
-			} catch (error) {
-				console.error(error);
-			}
-			setLoading(false);
+			usersApi
+				.getCurrentUser()
+				.then((responseUser) => setUser(responseUser))
+				.catch((responseError) => setError(responseError))
+				.finally(() => setLoadingInitial(false));
+		} else {
+			setLoadingInitial(false);
 		}
+	}, [cookies.AUTH_TOKEN]);
+
+	const login = (email, password) => {
+		setLoading(true);
+		usersApi
+			.login(email, password)
+			.then((response) => {
+				setUser(response.user);
+				setCookie('AUTH_TOKEN', response.jwt);
+				axios.defaults.headers.common.Authorization = `Bearer ${cookies.AUTH_TOKEN}`;
+				navigate('/');
+			})
+			.catch((responseError) => setError(responseError))
+			.finally(() => setLoading(false));
 	};
 
-	const login = async (url, email, password) => {
-		try {
-			const response = await axios({
-				url,
-				method: 'POST',
-				data: {
-					identifier: email,
-					password,
-				},
-			});
-			setCookie('AUTH_TOKEN', response.data.jwt);
-			setData(response.data.user);
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
-	const register = async (url, email, password) => {
-		try {
-			const response = await axios({
-				url,
-				method: 'POST',
-				data: {
-					username: email,
-					email,
-					password,
-				},
-			});
-			setCookie('AUTH_TOKEN', response.data.jwt);
-			setData(response.data.user);
-		} catch (error) {
-			console.error(error);
-		}
+	const register = (email, password) => {
+		setLoading(true);
+		usersApi
+			.register(email, password)
+			.then((response) => {
+				setUser(response.user);
+				setCookie('AUTH_TOKEN', response.jwt);
+				axios.defaults.headers.common.Authorization = `Bearer ${cookies.AUTH_TOKEN}`;
+				navigate('/');
+			})
+			.catch((responseError) => setError(responseError))
+			.finally(() => setLoading(false));
 	};
 
 	const logout = () => {
@@ -80,14 +68,15 @@ export function AuthProvider(props) {
 	};
 
 	const value = {
-		data,
+		user,
+		loading,
+		error,
 		login,
-		register,
 		logout,
-		getMe,
+		register,
 	};
 
-	return <AuthContext.Provider value={value} {...props} />;
+	return <AuthContext.Provider value={value}>{loadingInitial ? <FullPageSpinner /> : children}</AuthContext.Provider>;
 }
 
 export const useAuth = () => useContext(AuthContext);

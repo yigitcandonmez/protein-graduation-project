@@ -3,9 +3,9 @@ import { ProductProvider } from './ProductContext';
 
 function AppProviders({ children }) {
 	return (
-		<ProductProvider>
-			<AuthProvider>{children}</AuthProvider>
-		</ProductProvider>
+		<AuthProvider>
+			<ProductProvider>{children}</ProductProvider>
+		</AuthProvider>
 	);
 }
 

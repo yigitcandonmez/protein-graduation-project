@@ -1,107 +1,67 @@
-/* eslint-disable no-use-before-define */
+/* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, useContext, useState, useEffect } from 'react';
-import axios from '../axios';
+import * as productsApi from '../services/api/products';
 
 const ProductContext = createContext({});
 
 function ProductProvider({ children }) {
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 	const [categories, setCategories] = useState();
 	const [products, setProducts] = useState();
 	const [offers, setOffers] = useState();
 
 	useEffect(() => {
-		getAllCategories();
-		getAllProducts();
-		getMeOffers();
+		setLoading(true);
+		productsApi.getAllPromise.then((response) => {
+			setCategories(response[0]);
+			setProducts(response[1]);
+			setLoading(false);
+		});
 	}, []);
 
-	const getAllCategories = async () => {
-		try {
-			const response = await axios({
-				url: '/categories',
-				method: 'GET',
-			});
-
-			setCategories(response.data);
-		} catch (error) {
-			console.error(error);
-		}
+	const handleReRender = () => {
+		productsApi.getAllProducts().then((response) => setProducts(response));
 	};
 
-	const getAllProducts = async () => {
-		try {
-			const response = await axios({
-				url: '/products',
-				method: 'GET',
-			});
-			console.log('ÇALIŞTI');
-			setProducts(response.data);
-		} catch (error) {
-			console.error(error);
-		}
+	const getUserOffers = (userID) => {
+		productsApi
+			.getUserOffers(userID)
+			.then((responseOffers) => setOffers(responseOffers))
+			.catch((responseError) => setError(responseError));
 	};
 
-	const getByProductId = (productID) => {
-		return products?.find((e) => e.id === productID);
+	const buyProductWithId = (productID) => {
+		productsApi
+			.buyProductWithId(productID)
+			.then(() => handleReRender())
+			.catch((responseError) => setError(responseError));
 	};
 
-	const getByCategoryName = (categoryName) => {
-		return products?.filter((e) => e.category.name === categoryName);
+	const offerProductWithId = (productID, userID, offerPrice) => {
+		productsApi
+			.offerProductWithId(productID, userID, offerPrice)
+			.then(() => handleReRender())
+			.catch((responseError) => setError(responseError));
 	};
 
-	const getMeOffers = async (userID) => {
-		try {
-			const response = await axios({
-				url: `/offers/?users_permissions_user=${userID}`,
-				method: 'GET',
-			});
-			setOffers(response.data);
-		} catch (error) {
-			console.error(error);
-		}
+	const cancelProductOfferWithId = (offerID) => {
+		productsApi
+			.cancelProductOfferWithId(offerID)
+			.then(() => handleReRender())
+			.catch((responseError) => setError(responseError));
 	};
 
-	const buyProductWithId = async (productID) => {
-		const product = getByProductId(productID);
-		const response = await axios({
-			url: `/products/${productID}`,
-			method: 'PUT',
-			data: {
-				...product,
-				isOfferable: false,
-				isSold: true,
-			},
-		}).then(() => getAllProducts());
-		console.log(response);
-	};
-
-	const offerProductWithId = async (productID, userID) => {
-		try {
-			const response = await axios({
-				url: `/offers`,
-				method: 'POST',
-				data: {
-					users_permissions_user: userID,
-					product: productID,
-					offerPrice: 500,
-				},
-			}).then(() => getAllProducts());
-			console.log(response);
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	// eslint-disable-next-line react/jsx-no-constructed-context-values
 	const value = {
 		categories,
 		products,
 		offers,
-		getByProductId,
-		getByCategoryName,
-		getMeOffers,
-		offerProductWithId,
+		loading,
+		error,
+		getUserOffers,
 		buyProductWithId,
+		offerProductWithId,
+		cancelProductOfferWithId,
 	};
 
 	return <ProductContext.Provider value={value}>{children}</ProductContext.Provider>;
