@@ -1,5 +1,5 @@
 export { CustomLink } from './link';
-export { TextInput } from './text-input';
+export { Input } from './input';
 export { Heading } from './heading';
 export { Container } from './container';
 export { Button } from './button';
