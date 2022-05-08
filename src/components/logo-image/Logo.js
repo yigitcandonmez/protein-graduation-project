@@ -6,7 +6,7 @@ import styles from './Logo.module.css';
 
 function Logo({ size, className }) {
 	return (
-		<CustomLink to="/">
+		<CustomLink to="/?categoryName=hepsi">
 			<img src={ProjectLogo} alt="Project Logo" className={cx(styles[`logo-${size}`], className)} />
 		</CustomLink>
 	);

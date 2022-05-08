@@ -1,15 +1,19 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, useContext, useState, useEffect } from 'react';
 import * as productsApi from '../services/api/products';
+import { FullPageSpinner } from '../components/full-page-spinner';
+import { useAuth } from './AuthContext';
 
 const ProductContext = createContext({});
 
 function ProductProvider({ children }) {
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
+	const { user } = useAuth();
+
 	const [categories, setCategories] = useState();
 	const [products, setProducts] = useState();
 	const [offers, setOffers] = useState();
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		setLoading(true);
@@ -20,8 +24,19 @@ function ProductProvider({ children }) {
 		});
 	}, []);
 
+	useEffect(() => {
+		if (user.id) {
+			productsApi.getUserOffers(user.id).then((response) => {
+				setOffers(response);
+			});
+		}
+	}, [user]);
+
 	const handleReRender = () => {
 		productsApi.getAllProducts().then((response) => setProducts(response));
+		productsApi.getUserOffers(user.id).then((response) => {
+			setOffers(response);
+		});
 	};
 
 	const getUserOffers = (userID) => {
@@ -62,9 +77,10 @@ function ProductProvider({ children }) {
 		buyProductWithId,
 		offerProductWithId,
 		cancelProductOfferWithId,
+		handleReRender,
 	};
 
-	return <ProductContext.Provider value={value}>{children}</ProductContext.Provider>;
+	return <ProductContext.Provider value={value}>{loading ? <FullPageSpinner /> : children}</ProductContext.Provider>;
 }
 
 const useProduct = () => useContext(ProductContext);

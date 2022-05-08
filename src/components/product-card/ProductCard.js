@@ -17,8 +17,8 @@ function ProductCard({ product }) {
 				<Image
 					{...srcFiledProps}
 					alt={product.name}
-					lazy="loading"
-					height="80.6%"
+					loading="lazy"
+					height="59.6%"
 					width="100%"
 					className={styles.image}
 				/>

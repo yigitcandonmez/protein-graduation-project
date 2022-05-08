@@ -9,7 +9,7 @@ import * as usersApi from '../services/api/users';
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-	const [user, setUser] = useState({});
+	const [user, setUser] = useState();
 	const [loading, setLoading] = useState(false);
 	const [loadingInitial, setLoadingInitial] = useState(true);
 	const [error, setError] = useState();
@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
 	}, [location.pathname]);
 
 	useEffect(() => {
-		if (cookies.AUTH_TOKEN) {
+		if (typeof cookies.AUTH_TOKEN !== 'undefined') {
 			axios.defaults.headers.common.Authorization = `Bearer ${cookies.AUTH_TOKEN}`;
 			usersApi
 				.getCurrentUser()
@@ -31,9 +31,10 @@ export function AuthProvider({ children }) {
 				.catch((responseError) => setError(responseError))
 				.finally(() => setLoadingInitial(false));
 		} else {
+			setUser({});
 			setLoadingInitial(false);
 		}
-	}, [cookies.AUTH_TOKEN]);
+	}, [location.key]);
 
 	const login = (email, password) => {
 		setLoading(true);
@@ -45,7 +46,9 @@ export function AuthProvider({ children }) {
 				axios.defaults.headers.common.Authorization = `Bearer ${cookies.AUTH_TOKEN}`;
 				navigate('/');
 			})
-			.catch((responseError) => setError(responseError))
+			.catch((responseError) => {
+				setError(responseError);
+			})
 			.finally(() => setLoading(false));
 	};
 
@@ -64,7 +67,8 @@ export function AuthProvider({ children }) {
 	};
 
 	const logout = () => {
-		removeCookie('AUTH_TOKEN');
+		axios.defaults.headers.common.Authorization = ``;
+		removeCookie('AUTH_TOKEN', { path: '/' });
 	};
 
 	const value = {
@@ -74,6 +78,7 @@ export function AuthProvider({ children }) {
 		login,
 		logout,
 		register,
+		setLoadingInitial,
 	};
 
 	return <AuthContext.Provider value={value}>{loadingInitial ? <FullPageSpinner /> : children}</AuthContext.Provider>;
