@@ -5,7 +5,7 @@ import { Field, Form, Formik } from 'formik';
 
 import { useAuth } from '../../contexts/AuthContext';
 
-import { Button, Heading, Input, SubHeading, Card } from '../../components';
+import { Button, Heading, Input, SubHeading, Card, Span } from '../../components';
 import styles from './AuthForm.module.css';
 
 const AuthFormTypes = {
@@ -21,13 +21,15 @@ const AuthFormTypes = {
 
 function AuthForm() {
 	const { signUp, signIn } = AuthFormTypes;
+	const { login, register } = useAuth();
 	const [formType, setFormType] = useState(signIn);
 
-	const { login, register } = useAuth();
-
 	const signupSchema = Yup.object().shape({
-		email: Yup.string().email('Geçerli bir mail adresi giriniz').required(),
-		password: Yup.string().min(8, 'En az 8 karakter olmalı.').max(20, 'En fazla 20 karakter olabilir.').required(),
+		email: Yup.string().email('Geçerli bir mail adresi giriniz').required('Bu alan boş bırakılamaz.'),
+		password: Yup.string()
+			.min(8, 'En az 8 karakter olmalı.')
+			.max(20, 'En fazla 20 karakter olabilir.')
+			.required('Bu alan boş bırakılamaz.'),
 	});
 
 	const changeFormType = () => {
@@ -45,25 +47,24 @@ function AuthForm() {
 				}}
 				validationSchema={signupSchema}
 				onSubmit={(values, { setSubmitting }) => {
-					if (formType === signUp) {
+					if (formType.main === 'Üye Ol') {
 						register(values.email, values.password);
+					} else {
+						login(values.email, values.password);
 					}
-					login(values.email, values.password);
 					setSubmitting(false);
 				}}
 			>
 				<Form>
-					<Heading text={formType.main} className={styles.heading} />
-					<SubHeading className={styles.subTitle}>
-						Fırsatlardan yararlanmak için {formType.main.toLowerCase()}!
-					</SubHeading>
+					<Heading text={formType.main} size="32" className={styles.heading} />
+					<Span className={styles.subHeading}>Fırsatlardan yararlanmak için {formType.main.toLowerCase()}!</Span>
 					<Field
 						label="Email"
 						placeholder="Email@example.com"
 						name="email"
 						type="email"
 						component={Input}
-						inputClassName={styles.input}
+						inputClassName={styles['auth-form-input']}
 					/>
 					<Field
 						label="Password"
@@ -71,7 +72,7 @@ function AuthForm() {
 						name="password"
 						type="password"
 						component={Input}
-						inputClassName={styles.input}
+						inputClassName={styles['auth-form-input']}
 					/>
 					<Button label={formType.main} primary className={styles.button} />
 					<SubHeading className={styles.subTitleBottom}>

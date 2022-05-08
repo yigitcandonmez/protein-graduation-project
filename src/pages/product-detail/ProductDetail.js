@@ -1,32 +1,34 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Helmet from 'react-helmet';
-
 import styles from './ProductDetail.module.css';
-
 import { Container, Card, Image, Heading, Button, Span, Section } from '../../components';
 import { Header } from '../../layouts/Header';
 import { useProduct } from '../../contexts/ProductContext';
 import { getProductById, getUserOffer } from '../../utils/ProductUtils';
 import PopupModal from '../../containers/popup-modals/PopupModal';
-import { useAuth } from '../../contexts/AuthContext';
+import { fetchProduct } from '../../services/api/products';
 
 function Product() {
+	const [product, setProduct] = useState();
+
 	const [popup, setPopup] = useState(false);
 	const [popupType, setPopupType] = useState();
 
-	const { user } = useAuth();
-	const { products, offers, getUserOffers, cancelProductOfferWithId } = useProduct();
-
+	const { products, offers, cancelProductOfferWithId } = useProduct();
 	const { productID } = useParams();
-	const product = getProductById(products, +productID);
+
 	const offer = getUserOffer(offers, product?.id);
 
-	console.log(offer);
-
 	useEffect(() => {
-		getUserOffers(user.id);
+		const product = getProductById(products, +productID);
+		setProduct(product);
+
+		if (!product) {
+			fetchProduct(productID).then((response) => setProduct(response));
+		}
 	}, [products]);
 
 	const openPopup = (e) => {
@@ -64,19 +66,21 @@ function Product() {
 					<Card className={styles.card}>
 						<Image src={product?.image?.url} className={styles['single-card-image']} />
 						<div className={styles['single-card-content']}>
-							<Heading text={`${product?.name}`} size="large" />
-							<div className={styles['single-card-info']}>
-								<Span title="Marka:">{product?.brand}</Span>
-								<Span title="Renk:">{product?.color}</Span>
-								<Span title="Kullanım Durumu:">{product?.status}</Span>
-							</div>
-							<div className={styles['single-card-prices']}>
-								<Span className={styles['single-card-price']}>{product?.price} TL</Span>
-								{offer?.length > 0 && (
-									<Span className={styles['single-card-offer']} title="Verilen Teklif:">
-										{offer[0].offerPrice} TL
-									</Span>
-								)}
+							<Heading text={`${product?.name}`} className={styles['single-card-heading']} />
+							<div className={styles['row-reverse']}>
+								<div className={styles['single-card-prices']}>
+									<Span className={styles['single-card-price']}>{product?.price} TL</Span>
+									{offer?.length > 0 && (
+										<Span className={styles['single-card-offer']} title="Verilen Teklif:">
+											{offer[0].offerPrice} TL
+										</Span>
+									)}
+								</div>
+								<div className={styles['single-card-info']}>
+									<Span title="Marka:">{product?.brand}</Span>
+									<Span title="Renk:">{product?.color}</Span>
+									<Span title="Kullanım Durumu:">{product?.status}</Span>
+								</div>
 							</div>
 							<div className={styles['single-card-actions']}>
 								{!product?.isSold ? (

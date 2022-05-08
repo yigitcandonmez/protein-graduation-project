@@ -1,3 +1,5 @@
+/* eslint-disable for-direction */
+/* eslint-disable no-plusplus */
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import loadable from '@loadable/component';
@@ -11,7 +13,7 @@ import { Categories } from '../../containers/categories/Categories';
 const Products = loadable(() => import(/* webpackPrefetch: true */ '../../containers/products/Products'));
 
 function Home() {
-	const [searchParamse, setSearchParams] = useSearchParams();
+	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
 		setSearchParams('categoryName=hepsi');
@@ -25,7 +27,7 @@ function Home() {
 					<Image localSrc={Banner} alt="Home page banner" className={styles['home-banner-image']} />
 				</Section>
 				<Section sectionID="categories" className={styles['home-nav']}>
-					<Categories />
+					<Categories type="home" justify="between" />
 				</Section>
 				<Section sectionID="products" className={styles.products}>
 					<Products />

@@ -1,13 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { Container, Logo, CustomLink } from '../components';
+import useWindowSize from '../hooks/useWindowSize';
 import styles from './Header.module.css';
 import { useAuth } from '../contexts/AuthContext';
 
 function Header() {
 	const { user } = useAuth();
+	const { width } = useWindowSize();
 	return (
 		<header className={styles.header}>
-			<Container size="large">
+			<Container>
 				<div className={styles['header-wrapper']}>
 					<div>
 						<Logo size="small" />
@@ -17,8 +19,8 @@ function Header() {
 							<CustomLink label="Giriş Yap" to="/auth" />
 						) : (
 							<>
-								<CustomLink label="Ürün Ekle" to="/" />
-								<CustomLink label="Profilim" to="/auth" />
+								{width > 768 ? <CustomLink label="Ürün Ekle" to="/product/newProduct" /> : null}
+								<CustomLink label="Profilim" to="/profile" />
 							</>
 						)}
 					</div>
