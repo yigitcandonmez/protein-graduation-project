@@ -2,11 +2,13 @@
 import React from 'react';
 import cx from 'classnames';
 import styles from './Input.module.css';
+import { Span } from '../span';
 
 function Input({
 	rowClassName,
 	labelClassName,
 	inputClassName,
+	type,
 	id,
 	label,
 	field,
@@ -19,7 +21,13 @@ function Input({
 			<label className={cx(styles.label, labelClassName)} htmlFor={props.name}>
 				{label}
 			</label>
-			<input className={cx(styles.input, inputClassName, styles[`${inputValidate}`])} {...field} {...props} />
+			<input
+				className={cx(styles.input, styles[`${inputValidate}`], inputClassName)}
+				type={type}
+				{...field}
+				{...props}
+			/>
+			{touched[field.name] && <Span className={styles.error}>{errors[field.name]}</Span>}
 		</div>
 	);
 }
