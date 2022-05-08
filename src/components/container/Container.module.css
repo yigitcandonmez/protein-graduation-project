@@ -1,13 +1,7 @@
 .container {
-	max-width: 35.5rem;
+	max-width: 148rem;
+	min-width: 35.5rem;
 	height: 100%;
 	margin: 0 auto;
 	padding: 0 1rem;
-}
-
-@media screen and (min-width: 768px) {
-	.container {
-		max-width: 148rem;
-		padding: 0 2rem;
-	}
 }
