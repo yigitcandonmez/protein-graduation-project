@@ -12,3 +12,6 @@ export { Image } from './image';
 export { Section } from './section';
 export { Span } from './span';
 export { Popup } from './popup';
+export { TextArea } from './text-area';
+export { SelectBox } from './select-box';
+export { ProductInfo } from './product-info';
