@@ -9,6 +9,18 @@
 	border-radius: 0.8rem;
 }
 
+.product-info-left {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.product-info-right {
+	width: 80%;
+	text-align: right;
+	margin-right: 1rem;
+}
+
 .product-info-image {
 	width: 5rem;
 	height: 5rem;

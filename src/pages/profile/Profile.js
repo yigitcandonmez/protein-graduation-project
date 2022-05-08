@@ -40,29 +40,33 @@ function Profile() {
 						<Button
 							className={styles['button-logout']}
 							primary
-							label="Logout"
+							label="Çıkış Yap"
 							handleClick={(e) => {
 								handleLogout(e);
 							}}
 						/>
 					</Card>
 					<Card className={styles['profile-bottom']}>
-						<Categories type="offers" />
-						{mapData?.map((e) => {
-							return (
-								<ProductInfo
-									productName={e.name || e.product?.name}
-									productImage={e.image?.formats.small.url || e.product?.image.url}
-									productID={e.product?.id}
-									receivedOffers={e.offers}
-									offerPrice={e.offerPrice}
-									isStatus={e.isStatus}
-									isSold={e.product?.isSold}
-									wrapperClassName={styles.wrapper}
-									imageClassName={styles.image}
-								/>
-							);
-						})}
+						<div className={styles['profile-bottom-categories']}>
+							<Categories type="offers" />
+						</div>
+						<div className={styles['profile-bottom-products']}>
+							{mapData?.map((e) => {
+								return (
+									<ProductInfo
+										productName={e.name || e.product?.name}
+										productImage={e.image?.formats.small.url || e.product?.image.url}
+										productID={e.product?.id}
+										receivedOffers={e.offers}
+										offerPrice={e.offerPrice}
+										isStatus={e.isStatus}
+										isSold={e.product?.isSold}
+										wrapperClassName={styles.wrapper}
+										imageClassName={styles.image}
+									/>
+								);
+							})}
+						</div>
 					</Card>
 				</Container>
 			</Section>

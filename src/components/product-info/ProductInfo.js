@@ -35,9 +35,9 @@ function ProductInfo({
 				</>
 			);
 		} else if (e.isStatus === true) {
-			response = 'Onaylandı';
+			response = <Span>Onaylandı</Span>;
 		} else {
-			response = 'Reddedildi';
+			response = <Span>Reddedildi</Span>;
 		}
 		return response;
 	};
@@ -56,13 +56,13 @@ function ProductInfo({
 							buyProductWithId(productID).then((response) => console.log(response));
 						}}
 					/>
-					Onaylandı
+					<Span>Onaylandı</Span>
 				</>
 			);
 		} else if (isSold && isStatus) {
-			response = 'Satın Alındı';
+			response = <Span>Satın Alındı</Span>;
 		} else {
-			response = 'Reddedildi';
+			response = <Span>Reddedildi</Span>;
 		}
 		return response;
 	};
@@ -71,7 +71,7 @@ function ProductInfo({
 		receivedOffers.map((e) => {
 			return (
 				<div className={cx(styles['product-info-wrapper'], wrapperClassName)}>
-					<div style={{ display: 'flex' }}>
+					<div className={styles['product-info-left']}>
 						<Image src={productImage} className={cx(styles['product-info-image'], imageClassName)} />
 						<div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10px', justifyContent: 'center' }}>
 							<Heading size="18" text={`${productName}`} />
@@ -80,13 +80,13 @@ function ProductInfo({
 							</Span>
 						</div>
 					</div>
-					<div>{receivedOfferResponse(e)}</div>
+					<div className={styles['product-info-right']}>{receivedOfferResponse(e)}</div>
 				</div>
 			);
 		})
 	) : (
 		<div className={cx(styles['product-info-wrapper'], wrapperClassName)}>
-			<div style={{ display: 'flex' }}>
+			<div className={styles['product-info-left']}>
 				<Image src={productImage} className={cx(styles['product-info-image'], imageClassName)} />
 				<div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10px', justifyContent: 'center' }}>
 					<Heading size="18" text={`${productName}`} />
@@ -97,9 +97,9 @@ function ProductInfo({
 					) : null}
 				</div>
 			</div>
-			<div>
+			<div className={styles['product-info-right']}>
 				{type !== 'popup' ? (
-					<Span className={styles['product-info-price']}>{givenOfferResponse()}</Span>
+					givenOfferResponse()
 				) : (
 					<Span className={styles['product-info-price']}>{productPrice} TL</Span>
 				)}

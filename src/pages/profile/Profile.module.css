@@ -7,10 +7,22 @@
 }
 
 .profile-bottom {
-	height: 70rem;
-	overflow-y: scroll;
+	min-height: 70rem;
 	margin-top: 1rem;
+	margin-bottom: 2rem;
 	flex-direction: column;
+}
+
+.profile-bottom-categories {
+	width: 100%;
+	margin-top: 1rem;
+	height: 3rem;
+}
+
+.profile-bottom-products {
+	overflow-y: auto;
+	height: 65rem;
+	padding: 0 1rem;
 }
 
 .user-info {
@@ -28,10 +40,16 @@
 .wrapper {
 	background-color: #ffffff;
 	border: 1px solid #f2f2f2;
-	margin: 1.3rem 3rem 0 3rem;
+	flex-direction: column;
 }
 
 .image {
 	width: 7.8rem;
 	height: 8.4rem;
+}
+
+@media screen and (min-width: 768px) {
+	.wrapper {
+		flex-direction: row;
+	}
 }

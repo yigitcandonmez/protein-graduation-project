@@ -10,12 +10,10 @@
 	color: #525252;
 	font-weight: 700;
 	margin-right: 0.4rem;
-	flex: 1;
 }
 
 .spanContent {
 	font-size: 1.5rem;
 	color: #525252;
-	flex: 1;
 	text-align: right;
 }

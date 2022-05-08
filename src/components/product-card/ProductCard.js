@@ -14,14 +14,16 @@ function ProductCard({ product }) {
 	return (
 		<CustomLink key={product.id} to={`/product/${product.id}`}>
 			<Card className={styles.card}>
-				<Image
-					{...srcFiledProps}
-					alt={product.name}
-					loading="lazy"
-					height="59.6%"
-					width="100%"
-					className={styles.image}
-				/>
+				<div className={styles['card-image']}>
+					<Image
+						{...srcFiledProps}
+						alt={product.name}
+						loading="lazy"
+						height="100%"
+						width="100%"
+						className={styles.image}
+					/>
+				</div>
 				<div className={styles['card-row']}>
 					<div className={styles.flex}>
 						<Span className={styles.brand}>{product.brand}</Span>
