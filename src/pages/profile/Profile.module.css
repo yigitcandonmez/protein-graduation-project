@@ -1,0 +1,37 @@
+.profile-top {
+	margin-top: 2rem;
+	padding: 1.6rem 2.6rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.profile-bottom {
+	height: 70rem;
+	overflow-y: scroll;
+	margin-top: 1rem;
+	flex-direction: column;
+}
+
+.user-info {
+	font-size: 1.5rem;
+	color: #525252;
+	font-weight: 700;
+}
+
+.button-logout {
+	width: 9rem;
+	background-color: var(--error);
+	color: var(--error-light);
+}
+
+.wrapper {
+	background-color: #ffffff;
+	border: 1px solid #f2f2f2;
+	margin: 1.3rem 3rem 0 3rem;
+}
+
+.image {
+	width: 7.8rem;
+	height: 8.4rem;
+}

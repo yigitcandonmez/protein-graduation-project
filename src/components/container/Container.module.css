@@ -1,11 +1,13 @@
-.container-small {
-	max-width: 38.9rem;
+.container {
+	max-width: 35.5rem;
 	height: 100%;
 	margin: 0 auto;
+	padding: 0 1rem;
 }
 
-.container-large {
-	max-width: 148rem;
-	height: 100%;
-	margin: 0 auto;
+@media screen and (min-width: 768px) {
+	.container {
+		max-width: 148rem;
+		padding: 0 2rem;
+	}
 }

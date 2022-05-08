@@ -1,0 +1,123 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	margin-top: 2rem;
+	padding: 1.6rem 1rem;
+	height: 85.7rem;
+}
+
+.card-heading {
+	font-size: 2.5rem;
+	color: #525252;
+	font-weight: 600;
+}
+
+.card-left {
+	flex: 1;
+	position: relative;
+}
+
+.card-right {
+	margin-top: 2rem;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.button {
+	width: 23rem;
+	height: 4.5rem;
+}
+
+.saveButton {
+	margin-top: 1rem;
+	width: 100%;
+	height: 4.5rem;
+	align-self: center;
+}
+
+.flexRow {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.inputRow {
+	margin-top: 2.5rem;
+}
+
+.textAreaRow {
+	margin-top: 1.5rem;
+}
+
+.flexRow > div {
+	margin-top: 1.5rem;
+	flex: 1;
+}
+
+.offerOption {
+	margin-top: 2rem;
+}
+
+.input {
+	width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+	.card {
+		flex-direction: row;
+		height: 71rem;
+	}
+	.card-left {
+		padding-right: 4.7rem;
+		flex: 1.3;
+	}
+
+	.card-left::after {
+		content: '';
+		width: 0.2rem;
+		height: 53.5rem;
+		background-color: #f2f2f2;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	.flexRow {
+		display: flex;
+		flex-direction: row;
+		margin-top: 2.5rem;
+	}
+
+	.textAreaRow {
+		margin-top: 2.5rem;
+	}
+
+	.flexRow > div:first-child {
+		margin-right: 1.2rem;
+	}
+
+	.flexRow > div:last-child {
+		margin-left: 1.2rem;
+	}
+
+	.flexRow > div {
+		margin-top: 0;
+		flex: 1;
+	}
+
+	.card-right {
+		padding-left: 4.7rem;
+		justify-content: space-between;
+	}
+
+	.saveButton {
+		width: 23rem;
+		margin-top: 0;
+		align-self: flex-end;
+	}
+
+	.input {
+		width: 23.6rem;
+	}
+}

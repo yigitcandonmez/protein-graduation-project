@@ -1,0 +1,30 @@
+.toastify-tost {
+	position: absolute;
+	top: 2rem;
+	left: 1rem;
+	background-color: #ffe5e5;
+	border-radius: 0.8rem;
+	width: 35.5rem;
+	height: 6rem;
+}
+
+.toastify-body {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	padding-left: 4.4rem;
+}
+
+.toastify-text {
+	font-size: 1.6rem;
+	color: #f77474;
+	font-weight: 600;
+}
+
+@media screen and (min-height: 76.8rem) {
+	.toastify-tost {
+		top: 5rem;
+		left: 3rem;
+		width: 32.2rem;
+	}
+}

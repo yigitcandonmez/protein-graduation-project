@@ -1,0 +1,40 @@
+.product-info-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 1rem;
+	margin-bottom: 0.5rem;
+	padding: 0.6rem 0.6rem;
+	background-color: #f0f8ff;
+	border-radius: 0.8rem;
+}
+
+.product-info-image {
+	width: 5rem;
+	height: 5rem;
+	border-radius: 0.8rem;
+}
+
+.product-info-name {
+	font-size: 1.3rem;
+	color: #555555;
+	padding-left: 0.7rem;
+}
+
+.product-info-price {
+	color: #525252;
+	font-size: 1.8rem;
+	font-weight: 800;
+}
+
+.single-card-offer {
+	margin-top: 0.5rem;
+	padding: 0.8rem 1rem;
+	background-color: #f2f2f2;
+}
+
+@media screen and (min-width: 768px) {
+	.product-info-wrapper {
+		margin-top: 1.7rem;
+	}
+}

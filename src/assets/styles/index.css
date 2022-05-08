@@ -14,7 +14,8 @@
 	box-sizing: border-box;
 }
 
-html {
+html,
+body {
 	font-size: 10px;
 	font-family: 'Nunito';
 	background-color: var(--background-color);
