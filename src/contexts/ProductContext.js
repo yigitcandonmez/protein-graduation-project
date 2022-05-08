@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, useContext, useState, useEffect } from 'react';
 import * as productsApi from '../services/api/products';
+import Toastify from '../utils/Toastify';
 import { FullPageSpinner } from '../components/full-page-spinner';
 import { useAuth } from './AuthContext';
 
@@ -25,8 +26,8 @@ function ProductProvider({ children }) {
 	}, []);
 
 	useEffect(() => {
-		if (user.id) {
-			productsApi.getUserOffers(user.id).then((response) => {
+		if (user?.id) {
+			productsApi.getUserOffers(user?.id).then((response) => {
 				setOffers(response);
 			});
 		}
@@ -42,28 +43,41 @@ function ProductProvider({ children }) {
 	const getUserOffers = (userID) => {
 		productsApi
 			.getUserOffers(userID)
-			.then((responseOffers) => setOffers(responseOffers))
+			.then((responseOffers) => {
+				setOffers(responseOffers);
+			})
 			.catch((responseError) => setError(responseError));
 	};
 
 	const buyProductWithId = (productID) => {
 		productsApi
 			.buyProductWithId(productID)
-			.then(() => handleReRender())
+			.then(() => {
+				handleReRender();
+				Toastify('success', 'Satın alındı!');
+			})
 			.catch((responseError) => setError(responseError));
 	};
 
 	const offerProductWithId = (productID, userID, offerPrice) => {
 		productsApi
 			.offerProductWithId(productID, userID, offerPrice)
-			.then(() => handleReRender())
+			.then(() => {
+				handleReRender();
+				Toastify('success', 'Teklif verildi!');
+			})
 			.catch((responseError) => setError(responseError));
 	};
 
 	const cancelProductOfferWithId = (offerID) => {
+		setLoading(true);
 		productsApi
 			.cancelProductOfferWithId(offerID)
-			.then(() => handleReRender())
+			.then(() => {
+				handleReRender();
+				setLoading(false);
+				Toastify('success', 'Teklif geri çekildi!');
+			})
 			.catch((responseError) => setError(responseError));
 	};
 

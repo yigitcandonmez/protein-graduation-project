@@ -4,30 +4,21 @@ import cx from 'classnames';
 import styles from './Input.module.css';
 import { Span } from '../span';
 
-function Input({
-	rowClassName,
-	labelClassName,
-	inputClassName,
-	type,
-	id,
-	label,
-	field,
-	form: { touched, errors },
-	...props
-}) {
-	const inputValidate = touched[field.name] && errors[field.name] ? 'input-error' : 'input-success';
+function Input({ rowClassName, labelClassName, inputClassName, type, id, label, field, form, ...props }) {
+	const inputValidate = form.touched[field.name] && form.errors[field.name] ? 'input-error' : 'input-success';
+
 	return (
 		<div className={cx(styles.inputRow, rowClassName)}>
 			<label className={cx(styles.label, labelClassName)} htmlFor={props.name}>
 				{label}
 			</label>
 			<input
-				className={cx(styles.input, styles[`${inputValidate}`], inputClassName)}
+				className={cx(styles[`${inputValidate}`], styles.input, inputClassName)}
 				type={type}
 				{...field}
 				{...props}
 			/>
-			{touched[field.name] && <Span className={styles.error}>{errors[field.name]}</Span>}
+			{form.touched[field.name] && <Span className={styles.error}>{form.errors[field.name]}</Span>}
 		</div>
 	);
 }

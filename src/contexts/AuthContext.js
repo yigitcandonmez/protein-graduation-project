@@ -2,6 +2,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import toastify from '../utils/Toastify';
 import axios from '../services/axios';
 import { FullPageSpinner } from '../components';
 import * as usersApi from '../services/api/users';
@@ -34,7 +36,14 @@ export function AuthProvider({ children }) {
 			setUser({});
 			setLoadingInitial(false);
 		}
-	}, [location.key]);
+	}, [cookies.AUTH_TOKEN]);
+
+	const authenticationSuccesfull = (token, toastLabel) => {
+		setCookie('AUTH_TOKEN', token);
+		axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+		navigate('/');
+		toastify('success', `Başarılı bir şekilde ${toastLabel}`);
+	};
 
 	const login = (email, password) => {
 		setLoading(true);
@@ -42,12 +51,15 @@ export function AuthProvider({ children }) {
 			.login(email, password)
 			.then((response) => {
 				setUser(response.user);
-				setCookie('AUTH_TOKEN', response.jwt);
-				axios.defaults.headers.common.Authorization = `Bearer ${cookies.AUTH_TOKEN}`;
-				navigate('/');
+				authenticationSuccesfull(response.jwt, 'giriş yaptınız');
 			})
 			.catch((responseError) => {
 				setError(responseError);
+				if (responseError.code === 'ERR_BAD_REQUEST') {
+					toastify('error', 'Kullanıcı adı veya şifre hatalı.');
+				} else {
+					toast.error('error', 'Beklenmedik bir hata oluştu.');
+				}
 			})
 			.finally(() => setLoading(false));
 	};
@@ -58,11 +70,16 @@ export function AuthProvider({ children }) {
 			.register(email, password)
 			.then((response) => {
 				setUser(response.user);
-				setCookie('AUTH_TOKEN', response.jwt);
-				axios.defaults.headers.common.Authorization = `Bearer ${cookies.AUTH_TOKEN}`;
-				navigate('/');
+				authenticationSuccesfull(response.jwt, 'üye oldunuz');
 			})
-			.catch((responseError) => setError(responseError))
+			.catch((responseError) => {
+				setError(responseError);
+				if (responseError.code === 'ERR_BAD_REQUEST') {
+					toastify('error', 'Bu e-posta adresi kullanılıyor.');
+				} else {
+					toast('error', 'Beklenmedik bir hata oluştu.');
+				}
+			})
 			.finally(() => setLoading(false));
 	};
 

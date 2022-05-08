@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Container, Logo, CustomLink } from '../components';
+import { Container, Logo, CustomLink, UserIcon, PlusIcon } from '../components';
 import useWindowSize from '../hooks/useWindowSize';
 import styles from './Header.module.css';
 import { useAuth } from '../contexts/AuthContext';
@@ -14,13 +14,20 @@ function Header() {
 					<div>
 						<Logo size="small" />
 					</div>
-					<div>
-						{Object.entries(user).length < 1 ? (
-							<CustomLink label="Giriş Yap" to="/auth" />
+					<div className={styles['header-navigation']}>
+						{user && Object.entries(user).length < 1 ? (
+							<CustomLink Icon={UserIcon} label="Giriş Yap" to="/auth">
+								<UserIcon />
+							</CustomLink>
 						) : (
 							<>
-								{width > 768 ? <CustomLink label="Ürün Ekle" to="/product/newProduct" /> : null}
-								<CustomLink label="Profilim" to="/profile" />
+								<CustomLink label={width > 768 ? 'Ürün Ekle' : ' '} to="/product/newProduct">
+									<PlusIcon />
+								</CustomLink>
+
+								<CustomLink label="Profilim" to="/profile/?categoryName=teklif+aldıklarım">
+									<UserIcon />
+								</CustomLink>
 							</>
 						)}
 					</div>

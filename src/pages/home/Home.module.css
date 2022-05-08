@@ -14,7 +14,7 @@
 }
 
 .products {
-	margin-top: 2rem;
+	margin: 2rem 0 16rem 0;
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 16.2rem);
@@ -42,6 +42,6 @@
 		margin-top: 2rem;
 	}
 	.products {
-		grid-template-columns: repeat(auto-fill, 26.4rem);
+		grid-template-columns: repeat(auto-fill, 28rem);
 	}
 }

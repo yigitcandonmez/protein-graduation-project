@@ -16,9 +16,9 @@ function CategoriesStartAndEnd({ width, type, children }) {
 
 	return (
 		<>
-			<ListItem data={[{ name: 'Hepsi' }]} />
+			<ListItem data={[{ name: 'Hepsi', id: 0 }]} />
 			{children}
-			{width > 768 ? <ListItem data={[{ name: 'Diğer' }]} /> : null}
+			{width > 768 ? <ListItem data={[{ name: 'Diğer', id: 14 }]} /> : null}
 		</>
 	);
 }

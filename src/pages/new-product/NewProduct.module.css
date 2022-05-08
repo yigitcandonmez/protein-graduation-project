@@ -3,7 +3,7 @@
 	flex-direction: column;
 	margin-top: 2rem;
 	padding: 1.6rem 1rem;
-	height: 85.7rem;
+	height: 96.7rem;
 }
 
 .card-heading {
@@ -59,14 +59,11 @@
 	margin-top: 2rem;
 }
 
-.input {
-	width: 100%;
-}
-
 @media screen and (min-width: 768px) {
 	.card {
 		flex-direction: row;
 		height: 71rem;
+		padding: 1.6rem 3rem;
 	}
 	.card-left {
 		padding-right: 4.7rem;

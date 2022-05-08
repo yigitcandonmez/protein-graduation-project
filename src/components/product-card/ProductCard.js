@@ -12,27 +12,29 @@ function ProductCard({ product }) {
 		[type]: type === 'src' ? product.image?.formats?.small?.url : NotFound,
 	};
 	return (
-		<CustomLink key={product.id} to={`/product/${product.id}`}>
-			<Card className={styles.card}>
-				<div className={styles['card-image']}>
-					<Image
-						{...srcFiledProps}
-						alt={product.name}
-						loading="lazy"
-						height="100%"
-						width="100%"
-						className={styles.image}
-					/>
-				</div>
-				<div className={styles['card-row']}>
-					<div className={styles.flex}>
-						<Span className={styles.brand}>{product.brand}</Span>
-						<Span title="Renk:">{product.color}</Span>
+		<div key={product.id}>
+			<CustomLink to={`/product/${product.id}`}>
+				<Card className={styles.card}>
+					<div className={styles['card-image']}>
+						<Image
+							{...srcFiledProps}
+							alt={product.name}
+							loading="lazy"
+							height="100%"
+							width="100%"
+							className={styles.image}
+						/>
 					</div>
-					<Span className={styles.price}>{product.price} TL</Span>
-				</div>
-			</Card>
-		</CustomLink>
+					<div className={styles['card-row']}>
+						<div className={styles.flex}>
+							<Span className={styles.brand}>{product.brand}</Span>
+							<Span title="Renk:">{product.color}</Span>
+						</div>
+						<Span className={styles.price}>{product.price} TL</Span>
+					</div>
+				</Card>
+			</CustomLink>
+		</div>
 	);
 }
 

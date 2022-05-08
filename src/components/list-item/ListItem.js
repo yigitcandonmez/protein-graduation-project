@@ -7,14 +7,19 @@ import styles from './ListItem.module.css';
 
 function ListItem({ data }) {
 	const [searchParams, setSearchParams] = useSearchParams();
-	const active = searchParams.get('categoryName');
+	const active = searchParams.get('categoryName') || 'hepsi';
 
 	const handleClick = (element) => {
-		setSearchParams(`categoryName=${element.target.innerText.toLowerCase()}`);
+		if (element.target.innerText !== 'Hepsi') {
+			setSearchParams(`categoryName=${element.target.innerText.toLowerCase()}`);
+		} else {
+			setSearchParams({});
+		}
 	};
 
 	return data?.map((e) => (
 		<li
+			key={e.id}
 			onClick={(element) => {
 				handleClick(element);
 			}}

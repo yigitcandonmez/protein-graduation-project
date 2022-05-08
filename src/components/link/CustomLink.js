@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import styles from './CustomLink.module.css';
 
-function CustomLink({ key, label, to, children }) {
+function CustomLink({ label, to, children }) {
 	return (
-		<Link key={!key ? 'none' : key} to={to} className={label ? styles.customLink : ''}>
-			{label}
-			{children}
+		<Link to={to} className={label ? styles.customLink : ''}>
+			<div className={styles['link-svg']}>{children}</div>
+			<div className={styles['link-label']}>{label}</div>
 		</Link>
 	);
 }

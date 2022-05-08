@@ -32,12 +32,11 @@
 
 .input-error {
 	background-color: var(--error-light);
-	color: var(--error);
 	border: 0.1rem solid var(--error);
 }
 
 .input-error::placeholder {
-	color: var(--error);
+	color: var(--error) !important;
 }
 
 .error {

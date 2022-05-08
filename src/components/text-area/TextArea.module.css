@@ -20,11 +20,10 @@
 	border-radius: 0.8rem;
 	background-color: #f4f4f4;
 	resize: none;
-	font-family: 'Nunito';
 }
 
 .textArea::placeholder {
-	color: #99a0a7;
+	color: red;
 }
 
 .textArea:focus.textArea-success {
@@ -32,7 +31,7 @@
 	border: 0.1rem solid var(--primary-blue);
 }
 
-.inpu-success::placeholder {
+.textArea-success::placeholder {
 	color: #3e3e3e;
 }
 

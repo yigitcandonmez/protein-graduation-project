@@ -22,7 +22,7 @@ function DropBox({ formData }) {
 		);
 	}, []);
 
-	const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
+	const { getRootProps, getInputProps } = useDropzone({
 		accept: 'image/*',
 		onDrop,
 		maxFiles: 1,
@@ -32,16 +32,18 @@ function DropBox({ formData }) {
 	const thumbs = files.map((file, i) => (
 		<div key={file.name}>
 			<div className={styles['drop-image-container']}>
-				<Image
-					localSrc={file.preview}
-					className={styles['drop-image']}
-					onLoad={() => {
-						URL.revokeObjectURL(file.preview);
-					}}
-				/>
-				<Span className={styles.close} handleClick={() => remove(i)}>
-					x
-				</Span>
+				<div style={{ width: '25%', height: '100%', position: 'relative' }}>
+					<Image
+						localSrc={file.preview}
+						className={styles['drop-image']}
+						onLoad={() => {
+							URL.revokeObjectURL(file.preview);
+						}}
+					/>
+					<Span className={styles.close} handleClick={() => remove(i)}>
+						x
+					</Span>
+				</div>
 			</div>
 		</div>
 	));

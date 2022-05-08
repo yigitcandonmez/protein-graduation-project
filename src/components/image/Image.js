@@ -6,7 +6,7 @@ const BASE_URL = 'https://bootcamp.akbolat.net/';
 function Image({ localSrc, src, alt, loading, width, height, className, onLoad }) {
 	return (
 		<img
-			src={!localSrc ? `${BASE_URL}${src}` : localSrc}
+			src={!localSrc && typeof src !== 'undefined' ? `${BASE_URL}${src}` : localSrc}
 			alt={alt}
 			width={width}
 			loading={loading}

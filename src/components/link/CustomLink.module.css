@@ -1,4 +1,6 @@
 .customLink {
+	display: flex;
+	align-items: center;
 	color: #4b9ce2;
 	font-weight: 600;
 	font-size: 1.5rem;
@@ -7,4 +9,11 @@
 	margin: 0 0.4rem;
 	border-radius: 0.8rem;
 	text-decoration: none;
+}
+
+.link-svg {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

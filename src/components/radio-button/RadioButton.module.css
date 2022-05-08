@@ -1,0 +1,66 @@
+.radio-input {
+	display: flex;
+	align-items: center;
+	border: 1px solid #e0e0e0;
+	border-radius: 0.8rem;
+	margin: 1rem 0;
+	padding: 1rem 1rem;
+	margin-bottom: 10px;
+}
+
+.radio-input input[type='radio'] {
+	display: none;
+}
+
+.radio-input label {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	padding-left: 2.6rem;
+	margin-right: 0;
+	color: #525252;
+	font-size: 1.6rem;
+	height: 2rem;
+	font-weight: 600;
+	user-select: none;
+}
+
+.radio-input-focus {
+	background-color: #f0f8ff;
+	border: 1px solid #4b9ce2;
+}
+
+.radio-input-focus label {
+	color: #4b9ce2;
+}
+
+.radio-input label:before {
+	content: '';
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	border: 1px solid #b1b1b1;
+	border-radius: 50%;
+	background-image: url('../../assets/images/Ellipse\ 1304.svg');
+}
+
+.radio-input input[type='radio']:checked + label:before {
+	background: url('../../assets/images/Group\ 6909.svg') 0 0 no-repeat;
+}
+
+.radio-input label:hover:before {
+	filter: brightness(120%);
+}
+
+.radio-input input[type='radio']:disabled + label:before {
+	filter: grayscale(100%);
+}
+
+@media screen and (min-width: 768px) {
+	.radio-input {
+		margin: 1.5rem 0;
+	}
+}

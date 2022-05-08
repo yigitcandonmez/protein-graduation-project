@@ -10,6 +10,7 @@ import { Button, Card, Heading, Input, Image, SubHeading, Popup, Span, ProductIn
 import { useAuth } from '../../contexts/AuthContext';
 import { useProduct } from '../../contexts/ProductContext';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
+import { RadioButton } from '../../components/radio-button';
 
 function Buy({ handleReject, productID }) {
 	const { buyProductWithId } = useProduct();
@@ -40,15 +41,15 @@ function Offer({ productImage, productName, productID, productPrice, handleRejec
 		<Card className={styles.offerCard}>
 			<Formik
 				initialValues={{
-					picked: '',
 					number: '',
+					offer: '',
 				}}
 				onSubmit={(values) => {
-					offerProductWithId(+productID, user.id, values.number);
+					offerProductWithId(+productID, user.id, values.offer);
 					handleReject();
 				}}
 			>
-				{({ values, setValues }) => (
+				{({ values, setValues, handleChange }) => (
 					<Form>
 						<div className={styles.headingRow}>
 							<Heading text="Teklif Ver" className={styles.offerHeading} />
@@ -66,54 +67,48 @@ function Offer({ productImage, productName, productID, productPrice, handleRejec
 									label="20%'si Kadar Teklif Ver"
 									value="20"
 									name="picked"
+									productPrice={productPrice}
 									type="radio"
-									component={Input}
+									component={RadioButton}
 									onClick={() => {
-										setValues({ ...values, number: parseFloat(productPrice * 0.2) });
+										setValues({ ...values, offer: parseFloat(productPrice * 0.2) });
 									}}
-									rowClassName={styles.inputRow}
-									labelClassName={styles.labelClassName}
-									inputClassName={styles.inputClassName}
 								/>
 								<Field
 									label="30%'u Kadar Teklif Ver"
 									value="30"
 									name="picked"
+									productPrice={productPrice}
 									type="radio"
-									component={Input}
-									onClick={() => {
-										setValues({ ...values, number: parseFloat(productPrice * 0.3) });
+									component={RadioButton}
+									handleClick={() => {
+										setValues({ ...values, offer: parseFloat(productPrice * 0.3) });
 									}}
-									rowClassName={styles.inputRow}
-									labelClassName={styles.labelClassName}
-									inputClassName={styles.inputClassName}
 								/>
 								<Field
 									label="40%'ı Kadar Teklif Ver"
 									value="40"
 									name="picked"
+									productPrice={productPrice}
 									type="radio"
-									component={Input}
-									onClick={() => {
-										setValues({ ...values, number: parseFloat(productPrice * 0.4) });
+									component={RadioButton}
+									handleClick={() => {
+										setValues({ ...values, offer: parseFloat(productPrice * 0.4) });
 									}}
-									rowClassName={styles.inputRow}
-									labelClassName={styles.labelClassName}
-									inputClassName={styles.inputClassName}
 								/>
 							</div>
 						</div>
 						<Field
-							name="number"
+							name="offer"
 							type="number"
 							placeholder="Teklif Belirle"
 							component={Input}
-							value={values.number}
+							value={values.offer}
 							onClick={() => {
 								setValues({ picked: '' });
 							}}
 						/>
-						<div>
+						<div style={{ textAlign: 'center' }}>
 							<Button primary label="Onayla" className={styles.button} />
 						</div>
 					</Form>

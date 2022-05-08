@@ -25,6 +25,49 @@ body {
 	min-height: 100vh;
 }
 
+input[type],
+textarea {
+	font-family: 'Nunito';
+}
+
+input[type]::placeholder {
+	color: #99a0a7;
+	font-weight: 500;
+	opacity: 1;
+}
+
+li {
+	list-style: none;
+}
+
 a {
 	text-decoration: none;
+}
+
+.error.toast {
+	background-color: rgba(255, 229, 229, 1);
+	color: rgba(247, 116, 116, 1) !important;
+}
+
+.Toastify__toast--error,
+.Toastify__toast--success {
+	font-size: 1.6rem;
+	box-shadow: 0px 3px 12px rgba(30, 54, 72, 0.18);
+	border-radius: 0.8rem;
+}
+
+.Toastify__toast--success {
+	margin: 1rem 1rem;
+	background-color: rgba(241, 255, 240, 1) !important;
+	color: rgba(70, 175, 50, 1) !important;
+}
+
+.Toastify__toast--error {
+	margin: 1rem 1rem;
+	background-color: rgba(255, 229, 229, 1) !important;
+	color: rgba(247, 116, 116, 1) !important;
+}
+
+.Toastify__close-button {
+	display: none;
 }

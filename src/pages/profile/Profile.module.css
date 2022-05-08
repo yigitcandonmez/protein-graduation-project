@@ -25,6 +25,19 @@
 	padding: 0 1rem;
 }
 
+.profile-bottom-products::-webkit-scrollbar {
+	width: 0.5rem;
+}
+
+.profile-bottom-products::-webkit-scrollbar-track {
+	border-radius: 0.5rem;
+}
+
+.profile-bottom-products::-webkit-scrollbar-thumb {
+	border-radius: 0.5rem;
+	background: #e0e0e0;
+}
+
 .user-info {
 	font-size: 1.5rem;
 	color: #525252;

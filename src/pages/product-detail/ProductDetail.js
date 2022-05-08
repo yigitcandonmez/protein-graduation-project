@@ -1,17 +1,20 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import styles from './ProductDetail.module.css';
-import { Container, Card, Image, Heading, Button, Span, Section } from '../../components';
+import { Container, Card, Image, Heading, Button, Span, Section, FullPageSpinner } from '../../components';
 import { Header } from '../../layouts/Header';
 import { useProduct } from '../../contexts/ProductContext';
 import { getProductById, getUserOffer } from '../../utils/ProductUtils';
 import PopupModal from '../../containers/popup-modals/PopupModal';
 import { fetchProduct } from '../../services/api/products';
+import { useAuth } from '../../contexts/AuthContext';
 
 function Product() {
+	const { user } = useAuth();
 	const [product, setProduct] = useState();
 
 	const [popup, setPopup] = useState(false);
@@ -40,6 +43,14 @@ function Product() {
 		setPopup(false);
 	};
 
+	const userIsOwner = () => {
+		return user?.id === product?.users_permissions_user?.id;
+	};
+
+	if (typeof product === 'undefined') {
+		return <FullPageSpinner />;
+	}
+
 	return (
 		<>
 			<Helmet
@@ -60,7 +71,6 @@ function Product() {
 				productImage={product?.image?.url}
 				productPrice={product?.price}
 			/>
-			<Header />
 			<Section sectionID="single-product-card">
 				<Container size="large">
 					<Card className={styles.card}>
@@ -83,7 +93,11 @@ function Product() {
 								</div>
 							</div>
 							<div className={styles['single-card-actions']}>
-								{!product?.isSold ? (
+								{userIsOwner() ? (
+									<Span className={styles['description-heading']}>
+										Kendi ürününüze teklif veremez & satın alamazsınız.
+									</Span>
+								) : !product?.isSold ? (
 									<>
 										<Button
 											primary
@@ -116,6 +130,10 @@ function Product() {
 								) : (
 									<Button label="Bu Ürün Satışta Değil" className={styles.noneButton} />
 								)}
+							</div>
+							<div className={styles['single-card-description']}>
+								<Span className={styles['description-heading']}>Açıklama</Span>
+								<Span className={styles['description-content']}>{product.description}</Span>
 							</div>
 						</div>
 					</Card>

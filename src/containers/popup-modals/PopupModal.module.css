@@ -45,35 +45,15 @@
 	justify-content: space-between;
 }
 
-.inputRow {
-	flex-direction: row-reverse;
-	align-items: center;
-	border: 1px solid #e0e0e0;
-	border-radius: 0.8rem;
-	margin: 1rem 0;
-	padding: 1.3rem 1rem;
-	justify-content: flex-end;
-}
-
-.inputClassName {
-	width: 2rem;
-	height: 2rem;
-	margin-right: 0.5rem;
-}
-
-.labelClassName {
-	color: #525252;
-	font-size: 1.5rem;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
 .offerHeading {
 	font-size: 1.8rem;
 	font-weight: 700;
 }
 
 .button {
+	width: 30.5rem;
+	height: 4.5rem;
+	margin: 0 auto;
 	margin-top: 1rem;
 }
 
@@ -82,14 +62,12 @@
 		width: 48.5rem;
 		margin-top: 0;
 		height: 46rem;
+		top: 50%;
+		transform: translate(-50%, -50%);
 	}
 
 	.offerHeading {
 		font-size: 2.5rem;
-	}
-
-	.inputRow {
-		margin: 1.5rem 0;
 	}
 
 	.button {

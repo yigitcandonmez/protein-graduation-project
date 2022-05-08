@@ -7,17 +7,23 @@ import { getByCategoryName } from '../../utils/ProductUtils';
 import { Span } from '../../components/span';
 import styles from './Products.module.css';
 
-export default function Products() {
+function Products() {
 	const infinitieScroll = useInfiniteScroll();
-	const { products } = useProduct();
+	const { products, categories } = useProduct();
 
 	const [searchParams, setSearchParams] = useSearchParams();
-	const active = searchParams.get('categoryName');
-	const filteredProducts = getByCategoryName(products, active);
+	const active = searchParams.get('categoryName') || 'hepsi';
+	const filteredProducts = getByCategoryName(products, categories, active);
 
 	if (filteredProducts?.length < 1) {
-		return <Span className={styles.productsSpan}>Aradığınız kategoride ürün bulunamadı.</Span>;
+		return (
+			<Span key="0" className={styles.productsSpan}>
+				Aradığınız kategoride ürün bulunamadı.
+			</Span>
+		);
 	}
 
 	return filteredProducts?.slice(0, infinitieScroll).map((product) => <ProductCard product={product} />);
 }
+
+export { Products };
