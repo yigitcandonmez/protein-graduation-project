@@ -99,6 +99,7 @@ npm start & yarn start
 <img src="https://i.ibb.co/NCDSQSy/mobileone.png" alt="mobile-prew" width="215"/>
 <img src="https://i.ibb.co/fDktCzK/auth2.png" alt="mobile-prew" width="215"/>
 <img src="https://i.ibb.co/s9nnyrk/auth.png" alt="mobile-prew" width="215"/>
+<img src="https://i.ibb.co/qFP0Vft/mobile.gif" alt="mobile-prew" width="215"/>  
 </p>
 </center>
 
