@@ -11,7 +11,7 @@ import { Image } from '../image';
 import { Span } from '../span';
 import styles from './DropBox.module.css';
 
-function DropBox({ formData }) {
+function DropBox({ formData, handleImage }) {
 	const [files, setFiles] = useState([]);
 	const onDrop = useCallback((acceptedFiles) => {
 		setFiles(
@@ -21,6 +21,7 @@ function DropBox({ formData }) {
 				})
 			)
 		);
+		handleImage(true);
 	}, []);
 
 	const { getRootProps, getInputProps } = useDropzone({
@@ -66,6 +67,7 @@ function DropBox({ formData }) {
 		if (files[0]?.path) {
 			formData.append('files.image', files[0]);
 		} else {
+			handleImage(false);
 			formData.delete('files.image');
 		}
 	}, [files]);

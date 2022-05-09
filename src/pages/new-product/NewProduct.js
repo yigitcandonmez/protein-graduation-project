@@ -6,10 +6,10 @@ import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useProduct } from '../../contexts/ProductContext';
 import { Card, Container, Heading, Input, Section, TextArea, SelectBox, Button, Span } from '../../components';
 import { addNewProduct, getSelectBoxItems } from '../../services/api/products';
-import { Header } from '../../layouts/Header';
 import styles from './NewProduct.module.css';
 import { ToggleSwitch } from '../../components/toggle';
 import { useAuth } from '../../contexts/AuthContext';
@@ -21,7 +21,14 @@ function NewProduct() {
 	let navigate = useNavigate();
 	const { categories } = useProduct();
 	const { user } = useAuth();
+	const [image, setImage] = useState();
 	const [selectItems, setSelectItems] = useState();
+
+	const handleImage = (type) => {
+		setImage(type);
+	};
+
+	console.log(image);
 
 	useEffect(() => {
 		const getAllSelectItems = async () => {
@@ -48,6 +55,7 @@ function NewProduct() {
 		color: Yup.string(),
 		status: Yup.string().required('Bu alan boş bırakılamaz.'),
 		price: Yup.number().required('Bu alan boş bırakılamaz.'),
+		files: Yup.array().required(),
 	});
 
 	return (
@@ -65,18 +73,22 @@ function NewProduct() {
 						isOfferable: false,
 						isSold: false,
 						users_permissions_user: user.id,
+						files: [],
 					}}
 					validationSchema={newProductSchema}
 					onSubmit={(values) => {
 						formData.append('data', JSON.stringify(values));
-						console.log(...formData);
-						addNewProduct(formData)
-							.then((response) => {
-								if (response.statusText === 'OK') {
-									navigate(`/product/${response.data.id}`);
-								}
-							})
-							.catch((error) => console.error(error));
+						if (image) {
+							addNewProduct(formData)
+								.then((response) => {
+									if (response.statusText === 'OK') {
+										navigate(`/product/${response.data.id}`);
+									}
+								})
+								.catch((error) => console.error(error));
+						} else {
+							toast.error('Fotoğraf eklemeniz gerekiyor');
+						}
 						formData.delete('data');
 					}}
 				>
@@ -144,7 +156,7 @@ function NewProduct() {
 							<div className={styles['card-right']}>
 								<div>
 									<Heading text="Ürün Görseli" className={styles['card-heading']} />
-									<DropBox formData={formData} />
+									<DropBox formData={formData} handleImage={handleImage} />
 									<div>{formData.get('files.image')}</div>
 								</div>
 								<Button mode="primary" className={styles.saveButton} label="Kaydet" />
