@@ -21,9 +21,9 @@ function Buy({ handleReject, productID }) {
 			<Heading text="Satın Al" size="25" className={styles.popupHeading} />
 			<Span className={styles.popupSubHeading}>Satın almak istiyor musunuz?</Span>
 			<div className={styles.popupRow}>
-				<Button label="Vazgeç" handleClick={handleReject} />
+				<Button mode="secondary" label="Vazgeç" handleClick={handleReject} />
 				<Button
-					primary
+					mode="primary"
 					label="Satın Al"
 					handleClick={() => {
 						buyProductWithId(productID);
@@ -111,7 +111,7 @@ function Offer({ productImage, productName, productID, productPrice, handleRejec
 							}}
 						/>
 						<div style={{ textAlign: 'center' }}>
-							<Button primary label="Onayla" className={styles.button} />
+							<Button mode="primary" label="Onayla" className={styles.button} />
 						</div>
 					</Form>
 				)}
