@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styles from './Icons.module.css';
 
 function Svg({ children }) {
@@ -53,3 +54,7 @@ export function UserIcon() {
 		</Svg>
 	);
 }
+
+Svg.propTypes = {
+	children: PropTypes.node.isRequired,
+};

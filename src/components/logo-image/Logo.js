@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import ProjectLogo from '../../assets/images/ProjectLogo.png';
 import { CustomLink } from '../link';
@@ -11,5 +11,14 @@ function Logo({ size, className }) {
 		</CustomLink>
 	);
 }
+
+Logo.propTypes = {
+	size: PropTypes.string.isRequired,
+	className: PropTypes.string,
+};
+
+Logo.defaultProps = {
+	className: '',
+};
 
 export { Logo };

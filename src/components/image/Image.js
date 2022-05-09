@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './Image.module.css';
 
@@ -16,5 +17,27 @@ function Image({ localSrc, src, alt, loading, width, height, className, onLoad }
 		/>
 	);
 }
+
+Image.propTypes = {
+	localSrc: PropTypes.string,
+	src: PropTypes.string,
+	alt: PropTypes.string,
+	loading: PropTypes.string,
+	width: PropTypes.string,
+	height: PropTypes.string,
+	className: PropTypes.string,
+	onLoad: PropTypes.func,
+};
+
+Image.defaultProps = {
+	localSrc: '',
+	src: '',
+	alt: '',
+	loading: 'lazy',
+	width: '100%',
+	height: '100%',
+	className: '',
+	onLoad: () => {},
+};
 
 export { Image };
