@@ -41,11 +41,11 @@ function NewProduct() {
 	}, []);
 
 	const newProductSchema = Yup.object().shape({
-		name: Yup.string().required('Bu alan boş bırakılamaz.'),
-		description: Yup.string().required('Bu alan boş bırakılamaz.'),
+		name: Yup.string().max('100').required('Bu alan boş bırakılamaz.'),
+		description: Yup.string().max('500').required('Bu alan boş bırakılamaz.'),
 		category: Yup.number().required('Bu alan boş bırakılamaz.'),
-		brand: Yup.string().required('Bu alan boş bırakılamaz.'),
-		color: Yup.string().required('Bu alan boş bırakılamaz.'),
+		brand: Yup.string(),
+		color: Yup.string(),
 		status: Yup.string().required('Bu alan boş bırakılamaz.'),
 		price: Yup.number().required('Bu alan boş bırakılamaz.'),
 	});
@@ -147,7 +147,7 @@ function NewProduct() {
 									<DropBox formData={formData} />
 									<div>{formData.get('files.image')}</div>
 								</div>
-								<Button primary className={styles.saveButton} label="Kaydet" />
+								<Button mode="primary" className={styles.saveButton} label="Kaydet" />
 							</div>
 						</Card>
 					</Form>

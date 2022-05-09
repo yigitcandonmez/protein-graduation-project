@@ -5,7 +5,6 @@ import { Button, Card, Container, ProductInfo, Section, Span } from '../../compo
 import { Categories } from '../../containers/categories/Categories';
 import { useAuth } from '../../contexts/AuthContext';
 import { useProduct } from '../../contexts/ProductContext';
-import { Header } from '../../layouts/Header';
 import { getUserProducts } from '../../services/api/products';
 import styles from './Profile.module.css';
 
@@ -13,14 +12,16 @@ function Profile() {
 	const [receivedOffers, setReceivedOffers] = useState();
 	const { user, logout } = useAuth();
 	const { offers } = useProduct();
+
 	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
+
 	const categoryName = searchParams.get('categoryName');
 	const mapData = categoryName === 'teklif verdiklerim' ? offers : receivedOffers;
 
 	useEffect(() => {
 		getUserProducts(user.id).then((response) => {
-			setReceivedOffers(response);
+			setReceivedOffers(response.reverse());
 		});
 	}, []);
 

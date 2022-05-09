@@ -2,9 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import styles from './Button.module.css';
 
-function Button({ label, id, primary, className, handleClick, button }) {
-	const mode = primary ? 'primary' : 'secondary';
-
+function Button({ label, id, mode, className, handleClick, button }) {
 	return (
 		<button
 			id={id}

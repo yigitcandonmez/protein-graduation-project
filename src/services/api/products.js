@@ -66,7 +66,6 @@ export async function buyProductWithId(productID) {
 }
 
 export async function responseOffer(offerID, type) {
-	console.log(offerID, type);
 	const response = await axios(`${CANCEL_OFFER_ENDPOINT}${offerID}`, {
 		method: 'PUT',
 		data: { isStatus: type === 'ACCEPT' },
@@ -95,9 +94,4 @@ export async function addNewProduct(formData) {
 		headers: { 'Content-Type': 'multipart/form-data' },
 	});
 	return response;
-}
-
-export async function deleteProduct(id) {
-	const response = await axios(`/products/${id}`, { method: 'DELETE' });
-	return response.data;
 }

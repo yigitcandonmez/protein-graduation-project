@@ -14,6 +14,6 @@ export { Span } from './span';
 export { Popup } from './popup';
 export { TextArea } from './text-area';
 export { SelectBox } from './select-box';
-export { ProductInfo } from './product-info';
+export { ProductInfo } from '../containers/product-info';
 export { PlusIcon } from './icons';
 export { UserIcon } from './icons';

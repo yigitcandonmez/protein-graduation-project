@@ -1,16 +1,18 @@
+/* eslint-disable import/order */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Field, Form, Formik } from 'formik';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './PopupModal.module.css';
 import { Button, Card, Heading, Input, Image, SubHeading, Popup, Span, ProductInfo } from '../../components';
 import { useAuth } from '../../contexts/AuthContext';
 import { useProduct } from '../../contexts/ProductContext';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import { RadioButton } from '../../components/radio-button';
+import { useNavigate } from 'react-router-dom';
 
 function Buy({ handleReject, productID }) {
 	const { buyProductWithId } = useProduct();

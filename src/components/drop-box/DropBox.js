@@ -23,7 +23,10 @@ function DropBox({ formData }) {
 	}, []);
 
 	const { getRootProps, getInputProps } = useDropzone({
-		accept: 'image/*',
+		accept: {
+			'image/jpeg': [],
+			'image/png': [],
+		},
 		onDrop,
 		maxFiles: 1,
 		maxSize: 409600,

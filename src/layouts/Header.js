@@ -24,8 +24,7 @@ function Header() {
 								<CustomLink label={width > 768 ? 'Ürün Ekle' : ' '} to="/product/newProduct">
 									<PlusIcon />
 								</CustomLink>
-
-								<CustomLink label="Profilim" to="/profile/?categoryName=teklif+aldıklarım">
+								<CustomLink label="Hesabım" to="/profile/?categoryName=teklif+aldıklarım">
 									<UserIcon />
 								</CustomLink>
 							</>

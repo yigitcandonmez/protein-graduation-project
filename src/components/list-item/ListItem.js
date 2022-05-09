@@ -21,6 +21,7 @@ function ListItem({ data }) {
 		<li
 			key={e.id}
 			onClick={(element) => {
+				if (element.target.innerText.toLowerCase() === active) return;
 				handleClick(element);
 			}}
 			className={cx(styles['list-item'], active === e.name.toLowerCase() ? styles.active : null)}

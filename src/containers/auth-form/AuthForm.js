@@ -74,7 +74,7 @@ function AuthForm() {
 						component={Input}
 						inputClassName={styles['auth-form-input']}
 					/>
-					<Button label={formType.main} primary className={styles.button} />
+					<Button label={formType.main} mode="primary" className={styles.button} />
 					<SubHeading className={styles.subTitleBottom}>
 						Hesabın var mı? {/* Span component'a çevirilecek */}
 						<span

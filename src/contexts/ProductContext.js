@@ -21,14 +21,14 @@ function ProductProvider({ children }) {
 		productsApi.getAllPromise.then((response) => {
 			setCategories(response[0]);
 			setProducts(response[1]);
-			setLoading(false);
 		});
+		setLoading(false);
 	}, []);
 
 	useEffect(() => {
 		if (user?.id) {
 			productsApi.getUserOffers(user?.id).then((response) => {
-				setOffers(response);
+				setOffers(response.reverse());
 			});
 		}
 	}, [user]);
@@ -70,13 +70,20 @@ function ProductProvider({ children }) {
 	};
 
 	const cancelProductOfferWithId = (offerID) => {
-		setLoading(true);
 		productsApi
 			.cancelProductOfferWithId(offerID)
 			.then(() => {
 				handleReRender();
-				setLoading(false);
 				Toastify('success', 'Teklif geri çekildi!');
+			})
+			.catch((responseError) => setError(responseError));
+	};
+
+	const responseOffer = (offerID, type) => {
+		productsApi
+			.responseOffer(offerID, type)
+			.then(() => {
+				handleReRender();
 			})
 			.catch((responseError) => setError(responseError));
 	};
@@ -91,6 +98,7 @@ function ProductProvider({ children }) {
 		buyProductWithId,
 		offerProductWithId,
 		cancelProductOfferWithId,
+		responseOffer,
 		handleReRender,
 	};
 

@@ -16,9 +16,16 @@
 }
 
 .product-info-right {
-	width: 80%;
-	text-align: right;
-	margin-right: 1rem;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.single-card-heading {
+	text-overflow: ellipsis;
+	max-width: 13ch;
+	font-size: 1.8rem;
 }
 
 .product-info-image {
@@ -40,13 +47,43 @@
 }
 
 .single-card-offer {
+	width: 100%;
 	margin-top: 0.5rem;
 	padding: 0.8rem 1rem;
 	background-color: #f2f2f2;
 }
 
+.accept {
+	color: #4b9ce2;
+	font-size: 1.5rem;
+}
+
+.decline {
+	color: #f77474;
+	font-size: 1.5rem;
+}
+
+.success {
+	color: #47b83f;
+	font-size: 1.5rem;
+}
+
+.wait-response {
+	color: #faad60;
+	font-size: 1.5rem;
+}
+
+.button {
+	width: 10.8rem;
+	height: 3rem;
+	margin: 0 0.5rem;
+}
+
 @media screen and (min-width: 768px) {
 	.product-info-wrapper {
 		margin-top: 1.7rem;
+	}
+	.single-card-offer {
+		width: 35%;
 	}
 }

@@ -100,7 +100,7 @@ function Product() {
 								) : !product?.isSold ? (
 									<>
 										<Button
-											primary
+											mode="primary"
 											id="buyPopup"
 											label="Satın Al"
 											handleClick={(e) => {
@@ -110,6 +110,7 @@ function Product() {
 										/>
 										{offer?.length > 0 ? (
 											<Button
+												mode="secondary"
 												label="Teklifi Geri Çek"
 												handleClick={() => {
 													cancelProductOfferWithId(offer[0]?.id);
@@ -118,6 +119,7 @@ function Product() {
 											/>
 										) : (
 											<Button
+												mode="secondary"
 												id="offerPopup"
 												label="Teklif Ver"
 												handleClick={(e) => {
