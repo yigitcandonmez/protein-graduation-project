@@ -97,7 +97,6 @@ npm start & yarn start
 <p align="center">
 <img src="https://i.ibb.co/PGLgL9W/mobiletwo.png" alt="mobile-prew" width="215"/>
 <img src="https://i.ibb.co/NCDSQSy/mobileone.png" alt="mobile-prew" width="215"/>
-<img src="https://i.ibb.co/fDktCzK/auth2.png" alt="mobile-prew" width="215"/>
 <img src="https://i.ibb.co/s9nnyrk/auth.png" alt="mobile-prew" width="215"/>
 <img src="https://i.ibb.co/Fh0nznZ/mobile.png" alt="mobile-prew" width="215"/>  
 </p>
