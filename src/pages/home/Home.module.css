@@ -2,6 +2,14 @@
 	padding-top: 2rem;
 }
 
+.banner {
+	margin-top: 1rem;
+	width: 100%;
+	min-height: 10rem;
+	height: auto;
+	background-color: #f2f2f2;
+}
+
 .home-banner {
 	width: 100%;
 }
@@ -34,14 +42,14 @@
 }
 
 @media screen and (min-width: 768px) {
-	.home-banner-image {
-		margin: 2rem 0;
-		max-height: 43rem;
-	}
 	.home-nav {
 		margin-top: 2rem;
 	}
 	.products {
 		grid-template-columns: repeat(auto-fill, 28rem);
+	}
+	.banner {
+		margin: 2rem 0;
+		max-height: 43rem;
 	}
 }

@@ -9,7 +9,9 @@ function Home() {
 	return (
 		<Container size="large">
 			<Section sectionID="banner">
-				<Image localSrc={Banner} alt="Home page banner" className={styles['home-banner-image']} />
+				<div className={styles.banner}>
+					<Image localSrc={Banner} alt="Home page banner" width="100%" height="100%" />
+				</div>
 			</Section>
 			<Section sectionID="categories" className={styles['home-nav']}>
 				<Categories type="home" justify="between" />
