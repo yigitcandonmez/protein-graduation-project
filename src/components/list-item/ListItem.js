@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import cx from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 import styles from './ListItem.module.css';
@@ -23,11 +24,6 @@ function ListItem({ data }) {
 				if (element.target.innerText.toLowerCase() === active) return;
 				handleClick(element);
 			}}
-			onKeyPress={(element) => {
-				if (element.target.innerText.toLowerCase() === active) return;
-				handleClick(element);
-			}}
-			role="menuitem"
 			className={cx(styles['list-item'], active === e.name.toLowerCase() ? styles.active : null)}
 		>
 			{e.name}

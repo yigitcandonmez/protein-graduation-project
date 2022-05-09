@@ -19,6 +19,6 @@ module.exports = {
 		'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
 		'react/react-in-jsx-scope': 'off',
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
-		'react/prop-types': [1, { skipUndeclared }],
+		'react/prop-types': [0],
 	},
 };

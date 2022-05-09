@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import PropTypes from 'prop-types';
 import { Card } from '../card';
 import { Image } from '../image';
 import { CustomLink } from '../link';
@@ -38,16 +37,5 @@ function ProductCard({ product }) {
 		</div>
 	);
 }
-
-ProductCard.propTypes = {
-	product: PropTypes.shape({
-		image: PropTypes.string,
-		id: PropTypes.string,
-		name: PropTypes.string,
-		brand: PropTypes.string,
-		color: PropTypes.string,
-		price: PropTypes.string,
-	}).isRequired,
-};
 
 export { ProductCard };

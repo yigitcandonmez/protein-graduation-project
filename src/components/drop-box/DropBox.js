@@ -1,5 +1,7 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
+/* eslint-disable prefer-const */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-props-no-spreading */
 import { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
