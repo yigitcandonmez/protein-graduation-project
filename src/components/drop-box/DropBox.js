@@ -6,6 +6,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button } from '../button';
+import { DropIcon } from '../icons/Icons';
 import { Image } from '../image';
 import { Span } from '../span';
 import styles from './DropBox.module.css';
@@ -73,12 +74,14 @@ function DropBox({ formData }) {
 		<div className={styles.thumbs}>{thumbs}</div>
 	) : (
 		<div className={styles.dropBox}>
-			<Span>Sürükleyip bırakarak yükle</Span>
+			<DropIcon className={styles['dropBox-icon']} />
+			<Span className={styles['dropBox-guidance']}>Sürükleyip bırakarak yükle</Span>
+			<Span className={styles['dropBox-brace']}>veya</Span>
 			<div {...getRootProps()}>
 				<input {...getInputProps()} />
 				<Button button label="Görsel Seçin" className={styles.button} />
 			</div>
-			<Span>PNG ve JPEG Dosya boyutu max. 100kb</Span>
+			<Span className={styles['dropBox-limit']}>PNG ve JPEG Dosya boyutu max. 100kb</Span>
 		</div>
 	);
 }

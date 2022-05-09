@@ -12,7 +12,7 @@ function Header() {
 			<Container>
 				<div className={styles['header-wrapper']}>
 					<div>
-						<Logo size="small" />
+						<Logo size={width > 768 ? 'small' : 'extra-small'} />
 					</div>
 					<div className={styles['header-navigation']}>
 						{user && Object.entries(user).length < 1 ? (

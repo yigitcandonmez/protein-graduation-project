@@ -11,7 +11,7 @@ import styles from './Profile.module.css';
 function Profile() {
 	const [receivedOffers, setReceivedOffers] = useState();
 	const { user, logout } = useAuth();
-	const { offers } = useProduct();
+	const { products, offers } = useProduct();
 
 	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -23,7 +23,7 @@ function Profile() {
 		getUserProducts(user.id).then((response) => {
 			setReceivedOffers(response.reverse());
 		});
-	}, []);
+	}, [products]);
 
 	const handleLogout = (e) => {
 		navigate('/', { replace: false });

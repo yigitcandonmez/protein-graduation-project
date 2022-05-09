@@ -1,2 +1,1 @@
-export { PlusIcon } from './Icons';
-export { UserIcon } from './Icons';
+export { PlusIcon, UserIcon, DropIcon } from './Icons';

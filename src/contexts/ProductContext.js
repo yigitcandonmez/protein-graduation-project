@@ -64,7 +64,6 @@ function ProductProvider({ children }) {
 			.offerProductWithId(productID, userID, offerPrice)
 			.then(() => {
 				handleReRender();
-				Toastify('success', 'Teklif verildi!');
 			})
 			.catch((responseError) => setError(responseError));
 	};
@@ -74,7 +73,6 @@ function ProductProvider({ children }) {
 			.cancelProductOfferWithId(offerID)
 			.then(() => {
 				handleReRender();
-				Toastify('success', 'Teklif geri çekildi!');
 			})
 			.catch((responseError) => setError(responseError));
 	};

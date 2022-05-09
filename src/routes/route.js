@@ -5,12 +5,14 @@ import { AppLayout } from '../layouts/AppLayout';
 import ProtectedRoute from './ProtectedRoute';
 
 const Home = loadable(() => import('../pages/home/Home'), { fallback: <FullPageSpinner /> });
-const Authentication = loadable(() => import('../pages/authentication/Authentication'));
+const Authentication = loadable(() => import('../pages/authentication/Authentication'), {
+	fallback: <FullPageSpinner />,
+});
 const ProductDetail = loadable(() => import('../pages/product-detail/ProductDetail'), {
 	fallback: <FullPageSpinner />,
 });
-const NewProduct = loadable(() => import('../pages/new-product/NewProduct'));
-const Profile = loadable(() => import('../pages/profile/Profile'));
+const NewProduct = loadable(() => import('../pages/new-product/NewProduct'), { fallback: <FullPageSpinner /> });
+const Profile = loadable(() => import('../pages/profile/Profile'), { fallback: <FullPageSpinner /> });
 
 export default function RouteConfig() {
 	let routes = [

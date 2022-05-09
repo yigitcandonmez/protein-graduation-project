@@ -6,6 +6,7 @@
 	font-size: 1.5rem;
 	padding: 0.5rem 1.9rem;
 	font-weight: normal;
+	margin-bottom: 1rem;
 }
 
 .dropBox {
@@ -14,7 +15,7 @@
 	border-radius: 1rem;
 	height: 11.3rem;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	flex-direction: column;
 }
@@ -47,8 +48,33 @@
 	height: 11.3rem;
 }
 
+.dropBox-icon {
+	margin-top: 2rem;
+}
+
+.dropBox-guidance {
+	display: none;
+	font-size: 1.4rem;
+	font-weight: 600;
+	color: #525252;
+}
+
+.dropBox-brace {
+	margin-bottom: 0.5rem;
+	display: none;
+}
+
+.dropBox-limit {
+	color: #b1b1b1;
+	font-size: 1.2rem;
+}
+
 @media screen and (min-width: 768px) {
 	.dropBox {
 		height: 16.4rem;
+	}
+	.dropBox-guidance,
+	.dropBox-brace {
+		display: block;
 	}
 }
