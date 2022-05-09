@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
 	}, [cookies.AUTH_TOKEN]);
 
 	const authenticationSuccesfull = (token, toastLabel) => {
-		setCookie('AUTH_TOKEN', token);
+		setCookie('AUTH_TOKEN', token, { path: '/' });
 		axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 		navigate('/');
 		toastify('success', `Başarılı bir şekilde ${toastLabel}`);
